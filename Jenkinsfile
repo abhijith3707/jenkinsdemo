@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'dev'
+        label 'Node1'
     }
     environment {
         IMAGE_NAME = 'cloud1111/jenkins-flask-app-demo'
