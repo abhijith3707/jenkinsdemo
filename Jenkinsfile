@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    tools{
+        docker 'docker'
+    }
     environment {
         IMAGE_NAME = 'cloud1111/jenkins-flask-app'
         IMAGE_TAG = "${IMAGE_NAME}:${env.BUILD_NUMBER}"
