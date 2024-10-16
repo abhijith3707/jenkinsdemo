@@ -1,6 +1,7 @@
 pipeline {
-    dev
-
+    agent {
+        label 'dev'
+    }
     environment {
         IMAGE_NAME = 'cloud1111/jenkins-flask-app-demo'
         IMAGE_TAG = "${IMAGE_NAME}:${env.BUILD_NUMBER}"
