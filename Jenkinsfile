@@ -36,11 +36,5 @@ pipeline {
                 echo "Docker image push successfully"
             }
         }
-        // stage('Deploy to EKS Cluster') {
-        //     steps {
-        //         sh "kubectl apply -f deployment.yaml"
-        //         echo "Deployed to EKS Cluster"
-        //     }
-        // }
     }
 }
