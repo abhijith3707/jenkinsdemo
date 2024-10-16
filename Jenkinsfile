@@ -4,25 +4,11 @@ pipeline {
     environment {
         IMAGE_NAME = 'cloud1111/jenkins-flask-app-demo'
         IMAGE_TAG = "${IMAGE_NAME}:${env.BUILD_NUMBER}"
-        // KUBECONFIG = credentials('kubeconfig-credentials-id')
     }
     stages {
-
-        // stage('Checkout') {
-        //     steps {
-        //         git url: 'https://github.com/shivaniclops/jenkins-flask-app.git', branch: 'main'
-        //         sh "ls -ltr"
-        //     }
-        // }
-        // stage('Setup') {
-        //     steps {
-        //         sh "pip install -r requirements.txt"
-        //     }
-        // }
         stage('Test') {
             steps {
-                // sh "pytest"
-                echo "test"
+                echo "Test Stage"
                 sh "whoami"
             }
         }
