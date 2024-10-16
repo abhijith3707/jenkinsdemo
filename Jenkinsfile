@@ -37,16 +37,16 @@ pipeline {
         {
             steps
             {
-                sh 'docker build -t ${IMAGE_TAG} .'
+                sh 'sudo docker build -t ${IMAGE_TAG} .'
                 echo "Docker image build successfully"
-                sh "docker images"
+                sh "sudo docker images"
             }
         }
         stage('Push Docker Image')
         {
             steps
             {
-                sh 'docker push ${IMAGE_TAG}'
+                sh 'sudo docker push ${IMAGE_TAG}'
                 echo "Docker image push successfully"
             }
         }
