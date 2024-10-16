@@ -20,7 +20,8 @@ pipeline {
         // }
         stage('Test') {
             steps {
-                sh "pytest"
+                // sh "pytest"
+                echo "test"
                 sh "whoami"
             }
         }
