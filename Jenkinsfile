@@ -30,7 +30,7 @@ pipeline {
         }
         stage('Login to docker hub') {
             steps {
-                withCredentials([usernamePassword(credentialsId: '<credentials-id>', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
+                withCredentials([usernamePassword(credentialsId: 'docker-cred', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
                 sh 'docker login -u ${USERNAME} -p ${PASSWORD}'}
                 echo 'Login successfully'
             }
