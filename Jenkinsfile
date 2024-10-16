@@ -1,16 +1,16 @@
 pipeline {
     agent any
     environment {
-        IMAGE_NAME = 'sanjeevkt720/jenkins-flask-app'
+        IMAGE_NAME = 'cloud1111/jenkins-flask-app'
         IMAGE_TAG = "${IMAGE_NAME}:${env.BUILD_NUMBER}"
-        KUBECONFIG = credentials('kubeconfig-credentials-id')
+        // KUBECONFIG = credentials('kubeconfig-credentials-id')
 
     }
     stages {
 
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/kodekloudhub/jenkins-project.git', branch: 'main'
+                git url: 'https://github.com/shivaniclops/jenkins-flask-app.git', branch: 'main'
                 sh "ls -ltr"
             }
         }
@@ -27,8 +27,8 @@ pipeline {
         }
         stage('Login to docker hub') {
             steps {
-                withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
-                sh 'echo ${dockerhubpwd} | docker login -u sanjeevkt720 --password-stdin'}
+                withCredentials([string(credentialsId: 'docker-cred', variable: 'docker-cred')]) {
+                sh 'echo ${docker-cred} | docker login -u cloud1111 --password-stdin'}
                 echo 'Login successfully'
             }
         }
@@ -49,11 +49,11 @@ pipeline {
                 echo "Docker image push successfully"
             }
         }
-        stage('Deploy to EKS Cluster') {
-            steps {
-                sh "kubectl apply -f deployment.yaml"
-                echo "Deployed to EKS Cluster"
-            }
-        }
+        // stage('Deploy to EKS Cluster') {
+        //     steps {
+        //         sh "kubectl apply -f deployment.yaml"
+        //         echo "Deployed to EKS Cluster"
+        //     }
+        // }
     }
 }
