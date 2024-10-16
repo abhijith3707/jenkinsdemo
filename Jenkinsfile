@@ -7,18 +7,6 @@ pipeline {
         // KUBECONFIG = credentials('kubeconfig-credentials-id')
     }
     stages {
-
-        // stage('Checkout') {
-        //     steps {
-        //         git url: 'https://github.com/shivaniclops/jenkins-flask-app.git', branch: 'main'
-        //         sh "ls -ltr"
-        //     }
-        // }
-        // stage('Setup') {
-        //     steps {
-        //         sh "pip install -r requirements.txt"
-        //     }
-        // }
         stage('Test') {
             steps {
                 // sh "pytest"
