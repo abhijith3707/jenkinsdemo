@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        docker 'latest'
+        dockerTool 'docker'
     }
     environment {
         IMAGE_NAME = 'cloud1111/jenkins-flask-app'
