@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    dev
 
     environment {
         IMAGE_NAME = 'cloud1111/jenkins-flask-app-demo'
