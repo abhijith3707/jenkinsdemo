@@ -1,8 +1,10 @@
 pipeline {
     agent {
-        node {
-        label 'dev'
-        }
+        node {label "UAT"}
+    }
+
+    tools {
+        dockerTool 'docker'
     }
     environment {
         IMAGE_NAME = 'cloud1111/jenkins-flask-app-demo'
@@ -12,8 +14,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                // sh "pytest"
-                echo "test"
+                echo "Test Stage"
                 sh "whoami"
             }
         }
@@ -41,11 +42,11 @@ pipeline {
                 echo "Docker image push successfully"
             }
         }
-        // stage('Deploy to EKS Cluster') {
-        //     steps {
-        //         sh "kubectl apply -f deployment.yaml"
-        //         echo "Deployed to EKS Cluster"
-        //     }
-        // }
+        stage('Deploy to EKS Cluster') {
+            steps {
+                sh "kubectl apply -f deployment.yaml"
+                echo "Deployed to EKS Cluster"
+            }
+        }
     }
 }
