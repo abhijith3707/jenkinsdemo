@@ -34,7 +34,7 @@ pipeline {
         {
             steps
             {
-                sh 'sudo docker push ${IMAGE_TAG}'
+                sh 'docker push ${IMAGE_TAG}'
                 echo "Docker image push successfully"
             }
         }
