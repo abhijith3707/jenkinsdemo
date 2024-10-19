@@ -25,7 +25,7 @@ pipeline {
         {
             steps
             {
-                sh 'sudo docker build -t ${IMAGE_TAG} .'
+                sh 'docker build -t ${IMAGE_TAG} .'
                 echo "Docker image build successfully"
                 sh "sudo docker images"
             }
