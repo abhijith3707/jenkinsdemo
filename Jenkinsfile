@@ -31,14 +31,14 @@ pipeline {
             }
         }
         
-        stage('Login to Docker Hub') {
-            steps {
-                // Using Jenkins credentials to securely login to Docker Hub
-                withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-                    sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
-                }
-            }
-        }
+        // stage('Login to Docker Hub') {
+        //     steps {
+        //         // Using Jenkins credentials to securely login to Docker Hub
+        //         withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+        //             sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
+        //         }
+        //     }
+        // }
         stage('Push Docker Image')
         {
             steps
