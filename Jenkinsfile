@@ -49,3 +49,16 @@ pipeline {
         }
     }
 }
+ post {
+        success {
+            mail to: 'abhijithsaseendran753@gmail.com', // Change this to the recipient's email
+                 subject: "Jenkins Build Successful: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                 body: "Good news! The build was successful. Check it out here: ${env.BUILD_URL}"
+        }
+        failure {
+            mail to: 'abhijithsaseendran753@gmail.com', // Change this to the recipient's email
+                 subject: "Jenkins Build Failed: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                 body: "Oh no! The build failed. Check it out here: ${env.BUILD_URL}"
+        }
+    }
+}
