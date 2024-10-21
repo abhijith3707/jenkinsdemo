@@ -48,7 +48,7 @@ pipeline {
             }
         }
     }
-}
+
 post {
         success {
             mail to: 'abhijithsaseendran753@gmail.com',
@@ -61,4 +61,4 @@ post {
                  body: "The Jenkins build ${env.BUILD_ID} for the Node-React app failed. Please check the logs."
         }
     }
-
+}
