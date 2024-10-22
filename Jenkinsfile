@@ -7,7 +7,7 @@ pipeline {
         dockerTool 'docker'
     }
     environment {
-        IMAGE_NAME = 'cloud1111/jenkins-flask-app-demo'
+        IMAGE_NAME = 'abhijithssss/jenkins-flask-app-demo'
         IMAGE_TAG = "${IMAGE_NAME}:${env.BUILD_NUMBER}"
         // KUBECONFIG = credentials('kubeconfig-credentials-id')
     }
@@ -29,16 +29,16 @@ pipeline {
         {
             steps
             {
-                sh 'sudo docker build -t ${IMAGE_TAG} .'
+                sh 'docker build -t ${IMAGE_TAG} .'
                 echo "Docker image build successfully"
-                sh "sudo docker images"
+                sh "docker images"
             }
         }
         stage('Push Docker Image')
         {
             steps
             {
-                sh 'sudo docker push ${IMAGE_TAG}'
+                sh 'docker push ${IMAGE_TAG}'
                 echo "Docker image push successfully"
             }
         }
