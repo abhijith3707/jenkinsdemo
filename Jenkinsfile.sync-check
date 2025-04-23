@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         COMPARE_BRANCH = 'origin/dev' // The feature/dev branch you want to check
-        BASE_BRANCH = 'origin/master' // Your master branch
+        BASE_BRANCH = 'origin/main' // Your main branch
         SLACK_CHANNEL = '#all-kabooga-cartel'
     }
 
@@ -20,16 +20,16 @@ pipeline {
                 script {
                     def mergeBase = sh(script: "git merge-base ${BASE_BRANCH} ${COMPARE_BRANCH}", returnStdout: true).trim()
                     def devHead = sh(script: "git rev-parse ${COMPARE_BRANCH}", returnStdout: true).trim()
-                    def masterHead = sh(script: "git rev-parse ${BASE_BRANCH}", returnStdout: true).trim()
+                    def mainHead = sh(script: "git rev-parse ${BASE_BRANCH}", returnStdout: true).trim()
 
                     if (mergeBase != devHead) {
                         currentBuild.result = 'UNSTABLE'
                         slackSend(channel: SLACK_CHANNEL,
-                                  message: "🔄 *dev* is **not in sync** with *master*. Please rebase or merge master.",
+                                  message: "🔄 *dev* is **not in sync** with *main*. Please rebase or merge main.",
                                   color: '#FFA500')
                     } else {
                         slackSend(channel: SLACK_CHANNEL,
-                                  message: "✅ *dev* is in sync with *master*.",
+                                  message: "✅ *dev* is in sync with *main*.",
                                   color: '#36a64f')
                     }
                 }
