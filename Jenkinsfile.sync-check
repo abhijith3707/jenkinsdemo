@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         GIT_REPO = 'https://github.com/abhijith3707/jenkinsdemo.git'
-        MASTER_BRANCH = 'origin/master'
+        dev_BRANCH = 'origin/dev'
         SLACK_CHANNEL = '#all-kabooga-cartel'
     }
 
@@ -14,23 +14,23 @@ pipeline {
             }
         }
 
-        stage('Check Sync with Master') {
+        stage('Check Sync with dev') {
             steps {
                 script {
                     def featureBranch = sh(script: "git rev-parse --abbrev-ref HEAD", returnStdout: true).trim()
                     sh "git fetch origin"
-                    def mergeBase = sh(script: "git merge-base ${featureBranch} ${MASTER_BRANCH}", returnStdout: true).trim()
+                    def mergeBase = sh(script: "git merge-base ${featureBranch} ${dev_BRANCH}", returnStdout: true).trim()
                     def featureHead = sh(script: "git rev-parse ${featureBranch}", returnStdout: true).trim()
-                    def masterHead = sh(script: "git rev-parse ${MASTER_BRANCH}", returnStdout: true).trim()
+                    def devHead = sh(script: "git rev-parse ${dev_BRANCH}", returnStdout: true).trim()
 
-                    if (mergeBase != masterHead) {
+                    if (mergeBase != devHead) {
                         currentBuild.result = 'UNSTABLE'
                         slackSend(channel: SLACK_CHANNEL,
-                                  message: "🔄 *${featureBranch}* is **not in sync** with *master*. Please rebase or merge master.",
+                                  message: "🔄 *${featureBranch}* is **not in sync** with *dev*. Please rebase or merge dev.",
                                   color: '#FFA500')
                     } else {
                         slackSend(channel: SLACK_CHANNEL,
-                                  message: "✅ *${featureBranch}* is in sync with *master*.",
+                                  message: "✅ *${featureBranch}* is in sync with *dev*.",
                                   color: '#36a64f')
                     }
                 }
